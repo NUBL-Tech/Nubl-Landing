@@ -4,6 +4,7 @@
    right: rem(40);
    z-index: 9999;
    overflow: hidden;
+   user-select: none;
 
 
    @media (max-width: $mobile) {
@@ -40,7 +41,7 @@
       .mob-decor-circle {
          bottom: 50%;
          left: 50%;
-         transform: translate(-50%, 50%);
+         transform: translate(-50%, 50%) scale(0.8);
       }
 
       @media (max-width: rem(350)) {

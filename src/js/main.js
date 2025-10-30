@@ -202,54 +202,54 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelectorAll('.form-block__item').forEach(item => {
     const input = item.querySelector('input, textarea');
     const label = item.querySelector('label');
-
     if (input && label) {
         // При клике на label
         label.addEventListener('click', () => {
             item.classList.add('active');
             input.focus();
         });
-
         // При фокусе на input/textarea
         input.addEventListener('focus', () => {
             item.classList.add('active');
         });
-
         // При потере фокуса
         input.addEventListener('blur', () => {
             if (input.value.trim() === '') {
                 item.classList.remove('active');
+                item.classList.remove('show'); // Удаляем класс show, если поле пустое
+            } else {
+                item.classList.add('show'); // Добавляем класс show, если поле заполнено
             }
             // Проверка email при потере фокуса (только для email поля)
             if (input.type === 'email') {
                 validateEmailField(input, item);
             }
         });
-
         // При вводе текста (для динамической проверки)
         input.addEventListener('input', () => {
             if (input.value.trim() !== '') {
                 item.classList.add('active');
+                item.classList.add('show'); // Добавляем класс show, если поле заполнено
             } else {
                 item.classList.remove('active');
+                item.classList.remove('show'); // Удаляем класс show, если поле пустое
             }
             // Удаляем ошибку при вводе текста
             if (input.type === 'email') {
                 item.classList.remove('error');
             }
         });
-
         // Инициализация при загрузке страницы
         if (input.value.trim() !== '') {
             item.classList.add('active');
+            item.classList.add('show'); // Добавляем класс show, если поле заполнено
         }
     }
 });
 
-// Функция проверки email поля
+// Остальные функции остаются без изменений
 function validateEmailField(input, item) {
     if (input.value.trim() !== '') {
-        // Проверяем валидность email
         if (!input.checkValidity() || !isValidEmail(input.value)) {
             item.classList.add('error');
         } else {
@@ -258,7 +258,6 @@ function validateEmailField(input, item) {
     }
 }
 
-// Дополнительная проверка email формата
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -268,10 +267,8 @@ function isValidEmail(email) {
 document.addEventListener('submit', function (e) {
     const form = e.target;
     if (form.classList.contains('your-form-class') || form.querySelector('.form-block__item')) {
-        // Проверяем все email поля перед отправкой
         const emailInputs = form.querySelectorAll('input[type="email"]');
         let hasErrors = false;
-
         emailInputs.forEach(input => {
             const item = input.closest('.form-block__item');
             if (item) {
@@ -283,11 +280,8 @@ document.addEventListener('submit', function (e) {
                 }
             }
         });
-
-        // Если есть ошибки, предотвращаем отправку
         if (hasErrors) {
             e.preventDefault();
-            // Можно добавить фокус на первое поле с ошибкой
             const firstErrorItem = form.querySelector('.form-block__item.error');
             if (firstErrorItem) {
                 firstErrorItem.querySelector('input, textarea').focus();
@@ -295,6 +289,7 @@ document.addEventListener('submit', function (e) {
         }
     }
 });
+
 
 // * задаем высоту для textarea =============================================================================================================================================================================================
 
@@ -306,7 +301,7 @@ if (textarea) {
         this.style.height = 'auto';
 
         if (this.value.trim() === '') {
-            this.style.height = '130px';
+            this.style.height = '100%';
         } else {
             this.style.height = Math.min(this.scrollHeight, 330) + 'px';
         }
@@ -315,7 +310,7 @@ if (textarea) {
     // При фокусе увеличиваем до нужного размера
     textarea.addEventListener('focus', function () {
         if (this.value.trim() !== '') {
-            this.style.height = 'auto';
+            // this.style.height = 'auto';
             this.style.height = Math.min(this.scrollHeight, 330) + 'px';
         }
     });
