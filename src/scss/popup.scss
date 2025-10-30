@@ -8,6 +8,7 @@
    background-color: var(--colorBg);
    padding: rem(20);
    overflow: auto;
+   user-select: none;
 
    @media (max-width: $tablet) {
       padding: rem(10);

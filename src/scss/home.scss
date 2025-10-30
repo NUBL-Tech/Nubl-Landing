@@ -3,6 +3,7 @@
    display: flex;
    padding: rem(140) 0 0;
    z-index: 85;
+   user-select: none;
 
    @media (max-width: $tablet) {
       padding: rem(85) 0 0;
@@ -51,6 +52,7 @@
    &.information {
       padding: rem(165) rem(10) rem(40);
       z-index: 200;
+      user-select: auto;
 
       @media (max-width: $tablet) {
          padding: rem(140) rem(10) rem(40);
@@ -2159,44 +2161,34 @@
    &__item {
       border: 1px solid var(--colorWhite-lightInfo);
       border-radius: var(--borderRadius-lg);
-      padding: rem(30);
       box-shadow: inset 0 0 rem(20) 0 var(--colorWhite);
       background: var(--colorWhite-lightSecondary);
-      min-height: rem(82);
-      display: flex;
-      flex-direction: column;
-      gap: rem(5);
       position: relative;
 
 
       @media (max-width: $mobile) {
          border-radius: var(--borderRadius-lb);
-         padding: rem(15) rem(20);
-         min-height: rem(70);
       }
 
       &.active {
-         padding: rem(30) rem(30) rem(23);
-
-         @media (max-width: $mobile) {
-            padding: rem(15) rem(20) rem(8);
-         }
 
          .form-block__label {
-            transform: translateX(rem(30)) translateY(rem(19));
+            padding: rem(20) rem(30) rem(30);
             font-size: rem(12);
-            pointer-events: none;
 
             @media (max-width: $mobile) {
-               transform: translateX(rem(20)) translateY(rem(12));
+               padding: rem(15) rem(20);
             }
+
          }
 
          .inp {
-            margin-top: rem(7);
+            position: relative;
+            z-index: 2;
+            padding: rem(38) rem(30) rem(20);
 
             @media (max-width: $mobile) {
-               margin-top: rem(17);
+               padding: rem(25) rem(20) rem(8);
             }
 
          }
@@ -2209,56 +2201,89 @@
 
       .inp {
          background-color: transparent;
+         width: 100%;
+         min-height: rem(80);
          line-height: var(--lineHeightSecondary);
          letter-spacing: var(--letterSpacingDefault);
+         padding: rem(28) rem(30) rem(30);
+         transform-style: preserve-3d;
+         will-change: transform;
+         cursor: pointer;
+
+         @media (max-width: $mobile) {
+            padding: 0 rem(20);
+            min-height: rem(70);
+         }
       }
    }
 
    // .form-block__item--txta
 
    &__item--txta {
-      min-height: rem(180);
-      padding: rem(30) rem(30) 0;
-      overflow: hidden;
+      min-height: rem(186);
 
-      @media (max-width: $mobile) {
-         padding: rem(15) rem(20) 0;
+      &.show {
+         padding-top: rem(40);
+         padding-right: rem(12);
+
+         @media (max-width: $mobile) {
+            padding-top: rem(35);
+         }
+
+         @media (max-width: $mobileSmall) {
+            padding-top: rem(50);
+         }
+
+         .inp {
+            padding: 0 rem(13) rem(30) rem(30) !important;
+            min-height: rem(130);
+            position: relative !important;
+
+            @media (max-width: $mobile) {
+               padding: 0 rem(13) rem(20) rem(20) !important;
+            }
+         }
       }
 
       &.active {
-         padding: rem(30) rem(30) 0;
+      
+         .inp {
+            padding: rem(40) rem(13) rem(30) rem(30);
+            position: absolute;
 
-         @media (max-width: $mobile) {
-            padding: rem(15) rem(20) 0;
+            @media (max-width: $mobile) {
+               padding: rem(40) rem(10) rem(30) rem(20);
+            }
+
+            @media (max-width: $mobileSmall) {
+               padding: rem(50) rem(10) rem(30) rem(20);
+            }
          }
 
-         @media (max-width: rem(550)) {
-            padding: rem(33) rem(20) 0;
-         }
       }
 
       .form-block__label {
-         @media (max-width: rem(550)) {
-            width: 100%;
-            max-width: rem(260);
-         }
 
-         @media (max-width: rem(350)) {
-            width: 100%;
-            max-width: rem(240);
+         span {
+            @media (max-width: $mobileSmall) {
+               width: 100%;
+               max-width: rem(280);
+               display: block;
+            }
          }
       }
 
       .inp {
-         min-height: rem(130);
-         max-height: rem(330);
-         height: rem(130);
-         padding-bottom: rem(30);
+         min-height: rem(180);
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
 
          @media (max-width: $mobile) {
-            padding-bottom: rem(15);
+            padding: rem(25) rem(20) rem(20);
          }
-
 
          &::-webkit-scrollbar {
             width: rem(5);
@@ -2267,7 +2292,7 @@
          /* Track */
          &::-webkit-scrollbar-track {
             background: var(--colorLine);
-            margin-bottom: rem(10);
+            margin-bottom: rem(20);
             margin-top: rem(-10);
             border-radius: rem(5);
 
@@ -2296,16 +2321,18 @@
       position: absolute;
       top: 0;
       left: 0;
-      transform: translateX(rem(30)) translateY(rem(30));
       width: 100%;
       height: 100%;
       cursor: pointer;
-      transition: all .2s ease;
-
+      padding: rem(30);
 
       @media (max-width: $mobile) {
-         transform: translateX(rem(20)) translateY(rem(25));
          font-size: rem(14);
+         padding: rem(25) rem(20);
+      }
+
+      span {
+         transition: all .2s ease;
       }
    }
 
@@ -2588,6 +2615,7 @@
    width: 100%;
    max-width: rem(250);
    height: 100%;
+   user-select: none;
 
    @media (max-width: rem(1400)) {
       position: relative;
