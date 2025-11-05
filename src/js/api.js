@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const payload = {
             email: email,
+            description: description,
             form_version: formVersion,
-            // можешь положить доп. поля прямо в raw_payload на бэке — мы их уже шлём
             consents: [
                 {
                     key: "privacy_policy",
@@ -69,11 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     checked_at: advertising ? now : null
                 }
             ],
-            // если хочешь, можно отправлять и описание:
-            // его бек сохранит в raw_payload, мы так и задумали
-            // но в текущей схеме оно не выделено отдельным полем
-            // можешь передать отдельно в body, бек просто положит в raw_payload
-            description: description
         };
 
         try {
