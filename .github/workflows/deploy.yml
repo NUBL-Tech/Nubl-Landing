@@ -50,6 +50,4 @@ jobs:
             cd /opt/consent-service
             docker compose pull frontend
             docker compose up -d frontend
-            docker compose run --rm backend python manage.py migrate --noinput
-            docker compose run --rm backend python manage.py collectstatic --noinput
             docker image prune -f
