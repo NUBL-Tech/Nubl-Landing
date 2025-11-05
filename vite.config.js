@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/Nubl-Landing/', // Правильный путь для GitHub Pages
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

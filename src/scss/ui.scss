@@ -206,7 +206,7 @@ body.menu-show {
    padding: rem(5) 0;
    position: relative;
 
-   &.active {
+   &:has(input:checked) {
       .check-mark-inner {
          border: 1px solid var(--colorParent);
          span {
@@ -272,14 +272,14 @@ body.menu-show {
          }
 
          @keyframes ani-checkMark {
-         
+
             0% {
                transform: scale(1);
                opacity: 1;
             }
 
 
-            
+
             100% {
                transform: scale(1.8);
                opacity: 0;

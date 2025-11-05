@@ -1,9 +1,11 @@
 .popup {
    position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
+   inset-inline: 0;
+   inset-block: 0;
+   width: 100vw;
+   height: 100vh;
+   max-width: 100vw;
+   max-height: 100vh;
    z-index: 99999;
    background-color: var(--colorBg);
    padding: rem(20);
@@ -202,7 +204,9 @@
       }
    }
 
-
+   body:has(&[open]) {
+      overflow: hidden;
+   }
 }
 
 .security {
