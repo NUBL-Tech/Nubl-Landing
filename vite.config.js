@@ -10,6 +10,14 @@ export default defineConfig({
       output: {
         manualChunks: undefined,
       },
+      input: [
+        './404.html',
+        './agreement.html',
+        './cookies.html',
+        './index.html',
+        './offer.html',
+        './privacy.html',
+      ],
     },
   },
   server: {
