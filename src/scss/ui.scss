@@ -214,6 +214,7 @@ body.menu-show {
          }
 
          &.check-mark-lose {
+            border: 1px solid #2f94f9;
             &::after {
                animation: none;
             }
@@ -265,6 +266,10 @@ body.menu-show {
          &::after {
             background-color: #2f94f9;
             animation: ani-checkMark 1.5s linear 0s infinite forwards;
+         }
+
+         .input {
+            top: 0;
          }
 
          span {
