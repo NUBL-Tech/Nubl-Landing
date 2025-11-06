@@ -93,6 +93,12 @@
       justify-content: flex-end;
       gap: rem(10);
       margin-top: auto;
+
+      @media (max-width: rem(1200)) {
+         justify-content: center;
+         flex-wrap: wrap;
+         width: 100%;
+      }
    }
 
    // .footer__social
@@ -223,4 +229,3 @@
    letter-spacing: -0.03em;
    color: var(--colorParent);
 }
-
