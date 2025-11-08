@@ -1515,10 +1515,5 @@ body.menu-show {
    transform: translateX(-50%);
    height: rem(526);
    width: rem(320);
-   display: none;
    pointer-events: none;
-
-   @media (max-width: $tablet) {
-      display: block;
-   }
 }

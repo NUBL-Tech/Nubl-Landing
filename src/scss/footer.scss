@@ -135,6 +135,7 @@
    font-size: rem(14);
    font-weight: 500;
    line-height: 1.2;
+   letter-spacing: var(--letterSpacingDefault);
 
    @media (max-width: rem(1200)) {
       display: none;
