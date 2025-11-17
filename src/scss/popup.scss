@@ -16,32 +16,21 @@
       padding: rem(10);
    }
 
-   &.link {
-      .copy {
-         opacity: 1;
-         transform: translateY(0);
-      }
-   }
 
    &.popup-error {
       position: relative !important;
-      min-height: 100vh;
+      // min-height: 100vh;
 
       @media (max-width: $tablet) {
-         padding: rem(10) 0;
+         padding: rem(10);
       }
 
       .popup__wrap {
-         min-height: calc(100vh - rem(40)) !important;
+         min-height: rem(500);
 
          @media (max-width: $tablet) {
-            min-height: calc(100vh - rem(20)) !important;
             padding: 0 rem(20);
          }
-      }
-
-      .popup__inner {
-         min-height: rem(550);
       }
 
       .popup__body {
@@ -150,6 +139,7 @@
       align-items: center;
       gap: rem(20);
       position: relative;
+      width: 100%;
    }
 
    // .popup__info
@@ -350,4 +340,5 @@
    opacity: 0;
    transform: translateY(rem(20));
    transition: all .2s ease;
+   pointer-events: none;
 }
