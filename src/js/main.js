@@ -359,44 +359,48 @@ if (signupDecors) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const mouseElement = document.querySelector('.mouse');
-    const decorElement = document.querySelector('.decor');
-    const blocks = document.querySelectorAll('.block-shadow-inset');
 
-    document.addEventListener('mousemove', function (e) {
-        const x = e.clientX;
-        const y = e.clientY;
-
-        // Позиционировать mouse элемент по центру
-        mouseElement.style.left = x + 'px';
-        mouseElement.style.top = y + 'px';
-        mouseElement.style.transform = 'translate(-50%, -50%)';
-
-        // Создать clip-path для показа декора только в области mouse
-        const clipPath = `circle(185px at ${x}px ${y}px)`;
-        decorElement.style.clipPath = clipPath;
-        decorElement.style.opacity = 1;
-
-        // Получаем размеры body
-        const bodyRect = document.body.getBoundingClientRect();
-
-        // Нормализуем координаты (от -0.5 до +0.5)
-        const normX = (x / bodyRect.width) - 0.3;
-        const normY = (y / bodyRect.height) - 0.3;
-
-        // Инвертируем направление и ограничиваем диапазон (-10px … +10px)
-        const offsetX = -(normX * 10);
-        const offsetY = -(normY * 10);
-
-        // Применяем эффект ко всем блокам
-        blocks.forEach(block => {
-            block.style.boxShadow = `inset ${offsetX.toFixed(2)}px ${offsetY.toFixed(2)}px 20px 0 rgba(255, 255, 255, 1)`;
+    if (mouseElement) {
+        
+        const decorElement = document.querySelector('.decor');
+        const blocks = document.querySelectorAll('.block-shadow-inset');
+    
+        document.addEventListener('mousemove', function (e) {
+            const x = e.clientX;
+            const y = e.clientY;
+    
+            // Позиционировать mouse элемент по центру
+            mouseElement.style.left = x + 'px';
+            mouseElement.style.top = y + 'px';
+            mouseElement.style.transform = 'translate(-50%, -50%)';
+    
+            // Создать clip-path для показа декора только в области mouse
+            const clipPath = `circle(185px at ${x}px ${y}px)`;
+            decorElement.style.clipPath = clipPath;
+            decorElement.style.opacity = 1;
+    
+            // Получаем размеры body
+            const bodyRect = document.body.getBoundingClientRect();
+    
+            // Нормализуем координаты (от -0.5 до +0.5)
+            const normX = (x / bodyRect.width) - 0.3;
+            const normY = (y / bodyRect.height) - 0.3;
+    
+            // Инвертируем направление и ограничиваем диапазон (-10px … +10px)
+            const offsetX = -(normX * 10);
+            const offsetY = -(normY * 10);
+    
+            // Применяем эффект ко всем блокам
+            blocks.forEach(block => {
+                block.style.boxShadow = `inset ${offsetX.toFixed(2)}px ${offsetY.toFixed(2)}px 20px 0 rgba(255, 255, 255, 1)`;
+            });
         });
-    });
-
-    // сброс начального состояния для всех блоков
-    blocks.forEach(block => {
-        block.style.boxShadow = 'inset 0 0 20px 0 #fff';
-    });
+    
+        // сброс начального состояния для всех блоков
+        blocks.forEach(block => {
+            block.style.boxShadow = 'inset 0 0 20px 0 #fff';
+        });
+    }
 });
 
 
@@ -479,9 +483,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // * ссылка для копирования =============================================================================================================================================================================================
 
 document.addEventListener('DOMContentLoaded', function () {
-    const socialLink = document.querySelector('.social-item-link');
-    if (socialLink) {
-        socialLink.addEventListener('click', function (event) {
+    const socialLinks = document.querySelectorAll('.copy-link');
+
+    socialLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
             event.preventDefault();
             const linkToCopy = this.getAttribute('data-link')?.trim();
 
@@ -494,16 +499,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         console.error('Ошибка копирования: ', error);
                     });
 
-                const popup = this.closest('.popup');
-                if (popup) {
-                    popup.classList.add('link');
-                    setTimeout(() => {
-                        popup.classList.remove('link');
-                    }, 3000); // Удаляем класс через 3 секунды
-                }
+                this.classList.add('copied'); // Добавляем класс только к текущему элементу
+                setTimeout(() => {
+                    this.classList.remove('copied');
+                }, 3000);
             }
         });
-    }
+    });
 });
 
 
