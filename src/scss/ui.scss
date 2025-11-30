@@ -121,7 +121,7 @@ body.menu-show {
    width: 100%;
    height: 100%;
    background-color: rgba(0, 0, 0, 0.1);
-   z-index: 100;
+   z-index: 500;
    opacity: 0;
    pointer-events: none;
    transition: all .2s ease;
@@ -209,12 +209,14 @@ body.menu-show {
    &:has(input:checked) {
       .check-mark-inner {
          border: 1px solid var(--colorParent);
+
          span {
             opacity: 1;
          }
 
          &.check-mark-lose {
             border: 1px solid #2f94f9;
+
             &::after {
                animation: none;
             }
@@ -639,7 +641,8 @@ body.menu-show {
    }
 
    @media (max-width: rem(360)) {
-      padding: rem(14) rem(15);
+      padding: rem(14) rem(20);
+      font-size: rem(12);
    }
 
    @media (any-hover: hover) {
@@ -677,7 +680,7 @@ body.menu-show {
       padding: rem(18) rem(5);
    }
 
-   @media (max-width: rem(350)) {
+   @media (max-width: rem(360)) {
       font-size: rem(12);
    }
 
@@ -1516,4 +1519,38 @@ body.menu-show {
    height: rem(526);
    width: rem(320);
    pointer-events: none;
+   display: none;
+
+   @media (max-width: $tablet) {
+      display: block;
+   }
+}
+
+
+.back {
+   display: flex;
+   align-items: center;
+   gap: rem(5);
+   padding: rem(5) 0;
+   font-weight: 500;
+   font-size: rem(12);
+   letter-spacing: var(--letterSpacingDefault);
+   color: var(--colorInfo);
+   transition: all .2s ease;
+
+   @media (any-hover: hover) {
+      &:hover {
+         color: var(--colorParent);
+
+         svg {
+            path {
+               stroke: var(--colorParent)
+            }
+         }
+      }
+   }
+
+   svg {
+     transform: translateY(rem(-1));
+   }
 }
