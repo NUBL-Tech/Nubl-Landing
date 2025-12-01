@@ -5,33 +5,37 @@ import { resolve, relative } from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
-// Для ES-модулей
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // === НАСТРОЙКА ===
-const hostname = 'https://nubl.ru'; // 🔁 твой домен
+const hostname = 'https://nubl.ru';
 const distPath = resolve(__dirname, '../dist');
 const outputFile = resolve(distPath, 'sitemap.xml');
 
 // === Функция поиска HTML-файлов ===
 function getHtmlFiles(dir) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
-    let urls = [];
+    const urls = [];
 
     for (const entry of entries) {
         const fullPath = resolve(dir, entry.name);
 
         if (entry.isDirectory()) {
-            urls = urls.concat(getHtmlFiles(fullPath));
+            urls.push(...getHtmlFiles(fullPath));
         } else if (entry.isFile() && entry.name.endsWith('.html') && !entry.name.startsWith('404')) {
             // относительный путь от dist
             let relPath = '/' + relative(distPath, fullPath);
             relPath = relPath.replace(/\\/g, '/'); // для Windows
-            relPath = relPath
-                .replace(/index\.html$/, '') // index.html → /
-                .replace(/\.html$/, ''); // about.html → /about
 
-            // убираем двойные слэши и пустые строки
+            // Спец-кейс: корневой index.html → /
+            if (relPath === '/index.html') {
+                relPath = '/';
+            } else if (relPath.endsWith('.html')) {
+                // Любой другой *.html → без .html
+                relPath = relPath.slice(0, -'.html'.length); // /about.html → /about, /blog/index.html → /blog/index
+            }
+
+            // убираем двойные слэши и гарантируем ведущий /
             relPath = relPath.replace(/\/{2,}/g, '/');
             if (!relPath.startsWith('/')) relPath = '/' + relPath;
 
@@ -44,12 +48,15 @@ function getHtmlFiles(dir) {
 
 // === Генерация sitemap ===
 async function generateSitemap() {
-
     const sitemap = new SitemapStream({ hostname });
     const writeStream = createWriteStream(outputFile);
     sitemap.pipe(writeStream);
 
-    const urls = getHtmlFiles(distPath);
+    const rawUrls = getHtmlFiles(distPath);
+
+    // Дедупликация на всякий случай
+    const urls = Array.from(new Set(rawUrls));
+
     urls.forEach(url => {
         sitemap.write({
             url,

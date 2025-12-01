@@ -13,6 +13,7 @@ export default defineConfig({
       input: [
         './index.html',
         './404.html',
+        './legal.html',
         './legal/agreement.html',
         './legal/cookies.html',
         './legal/offer.html',
