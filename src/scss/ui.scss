@@ -150,7 +150,7 @@ body.menu-show {
    z-index: 105;
 
    p {
-      line-height: var(--lineHeightSecondary);
+      line-height: var(--lineHeigh-lg);
       letter-spacing: var(--letterSpacingDefault);
    }
 }
@@ -310,7 +310,7 @@ body.menu-show {
 
    &__text {
       font-weight: 500;
-      line-height: 1.2;
+      line-height: var(--lineHeigh-sm);
       letter-spacing: var(--letterSpacingDefault);
       color: var(--colorInfo);
 
@@ -352,7 +352,7 @@ body.menu-show {
 .text {
    font-weight: 500;
    font-size: rem(20);
-   line-height: 1.3;
+   line-height: var(--lineHeigh-md);
    letter-spacing: var(--letterSpacingDefault);
    color: var(--colorInfo);
 }
@@ -360,7 +360,7 @@ body.menu-show {
 .page-text span {
    font-weight: 500;
    font-size: rem(20);
-   line-height: 1.3;
+   line-height: var(--lineHeigh-md);
    letter-spacing: var(--letterSpacingDefault);
    color: var(--colorInfo);
    width: 100%;
@@ -376,7 +376,7 @@ body.menu-show {
 }
 
 .box-text {
-   line-height: var(--lineHeightSecondary);
+   line-height: var(--lineHeigh-lg);
    letter-spacing: var(--letterSpacingDefault);
 
    .fw-sbl {
@@ -620,7 +620,7 @@ body.menu-show {
    background: #1a1a1a;
    border-radius: var(--borderRadius-xl);
    font-weight: 500;
-   line-height: 1.2;
+   line-height: var(--lineHeigh-sm);
    color: var(--colorWhite);
    position: relative;
    overflow: hidden;
@@ -1142,7 +1142,7 @@ body.menu-show {
 .title-block {
    font-weight: 600;
    font-size: rem(18);
-   line-height: var(--lineHeightSecondary);
+   line-height: var(--lineHeigh-lg);
    letter-spacing: var(--letterSpacingDefault);
    margin-bottom: rem(15);
 
@@ -1152,7 +1152,7 @@ body.menu-show {
 }
 
 .text-block {
-   line-height: var(--lineHeightSecondary);
+   line-height: var(--lineHeigh-lg);
    letter-spacing: var(--letterSpacingDefault);
    color: var(--colorInfo);
 

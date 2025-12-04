@@ -96,8 +96,8 @@
    &__title {
       font-weight: 500;
       font-size: rem(15);
-      line-height: var(--lineHeightSecondary);
-      letter-spacing: -0.03em;
+      line-height: var(--lineHeigh-lg);
+      letter-spacing: var(--letterSpacingDefault);
 
       @media (max-width: $mobileSmall) {
          display: none;
@@ -128,8 +128,8 @@
    &__text {
       font-weight: 500;
       font-size: rem(12);
-      line-height: var(--lineHeightSecondary);
-      letter-spacing: -0.03em;
+      line-height: var(--lineHeigh-lg);
+      letter-spacing: var(--letterSpacingDefault);
       color: var(--colorInfo);
       position: relative;
       z-index: 5;
@@ -165,7 +165,7 @@
       padding: rem(10);
       font-weight: 500;
       font-size: rem(14);
-      line-height: 1.2;
+      line-height: var(--lineHeigh-sm);
       color: var(--colorInfo);
 
       @media (max-width: $mobile) {

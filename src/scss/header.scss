@@ -70,7 +70,7 @@ body.menu-show {
    gap: rem(6);
    font-weight: 600;
    font-size: rem(20);
-   line-height: 1.2;
+   line-height: var(--lineHeigh-sm);
    letter-spacing: var(--letterSpacingDefault);
    position: relative;
    z-index: 5;
@@ -100,7 +100,7 @@ body.menu-show {
    &__item {
       font-weight: 500;
       font-size: rem(14);
-      line-height: var(--lineHeightSecondary);
+      line-height: var(--lineHeigh-lg);
       letter-spacing: var(--letterSpacingDefault);
       color: var(--colorInfo);
       position: relative;
