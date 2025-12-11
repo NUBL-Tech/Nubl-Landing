@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // === НАСТРОЙКА ===
-const hostname = 'https://nubl.ru';
+const hostname = process.env.VITE_BASE_DOMAIN || 'https://nubl.ru';
 const distPath = resolve(__dirname, '../dist');
 const outputFile = resolve(distPath, 'sitemap.xml');
 
@@ -74,4 +74,22 @@ async function generateSitemap() {
     urls.forEach(u => console.log('  •', u));
 }
 
-generateSitemap().catch(console.error);
+// === Генерация robots.txt ===
+function generateRobotsTxt() {
+    const robotsContent = `User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /secret.html
+
+Sitemap: ${hostname}/sitemap.xml
+`;
+
+    const robotsFile = resolve(distPath, 'robots.txt');
+    fs.writeFileSync(robotsFile, robotsContent, 'utf-8');
+    console.log(`✅ robots.txt создан: ${robotsFile}`);
+}
+
+generateSitemap()
+    .then(() => generateRobotsTxt())
+    .catch(console.error);
