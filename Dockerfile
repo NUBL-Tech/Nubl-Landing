@@ -1,4 +1,8 @@
 FROM node:20-alpine AS build
+
+ENV VITE_BASE_DOMAIN=$VITE_BASE_DOMAIN
+ENV VITE_HOST=$VITE_HOST
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install

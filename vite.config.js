@@ -1,6 +1,24 @@
 import { defineConfig } from 'vite'
 
+// Плагин для замены %%VITE_*%% в HTML
+function htmlEnvPlugin() {
+  let env = {}
+  return {
+    name: 'html-env-replace',
+    configResolved(config) {
+      env = config.env
+    },
+    transformIndexHtml(html) {
+      // Заменяем %%VITE_*%% на значения из env
+      return html.replace(/%%(\w+)%%/g, (match, key) => {
+        return env[key] !== undefined ? env[key] : match
+      })
+    }
+  }
+}
+
 export default defineConfig({
+  plugins: [htmlEnvPlugin()],
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
